@@ -1,0 +1,23 @@
+import math
+import random
+
+# Simulated PPG signal data (100 samples)
+ppg_signal = [1000 + 100 * math.sin(0.1 * x) + random.randint(-20, 20) for x in range(100)]
+
+def count_peaks(ppg_signal):
+    """
+    Counts the number of peaks in the PPG signal.
+    A peak is a point that is greater than its immediate neighbors.
+    """
+    peak_count = 0
+
+    # Loop from index 1 to len-2 (avoid out-of-range errors)
+    for i in range(1, len(ppg_signal) - 1):
+        if ppg_signal[i] > ppg_signal[i - 1] and ppg_signal[i] > ppg_signal[i + 1]:
+            peak_count += 1
+
+    # Print the total number of detected peaks
+    print("Number of peaks detected:", peak_count)
+
+# Call the function with the simulated signal
+count_peaks(ppg_signal)
